@@ -50,14 +50,19 @@ const Home: NextPage = () => {
     },
   ]
 
-  const [formValues, _] = useState<IFormInitialValues>(initialValues)
+  const [formValues, setFormValues] = useState<IFormInitialValues>(initialValues)
+
+  const getFormValues = (values: any) => {
+    setFormValues(values)
+    console.log(values)
+  }
 
   return (
   <Formik
     initialValues={formValues}
     validateOnBlur={false}
     validateOnChange={false}
-    onSubmit={() => console.log(formValues)}
+    onSubmit={getFormValues}
     validationSchema={validationSchema}
     enableReinitialize
   >
