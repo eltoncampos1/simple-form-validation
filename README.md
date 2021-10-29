@@ -11,3 +11,9 @@
 [x] - Validar formato de e-mail;
 <br/>
 [x] - Usa uma data valida
+
+## To run this project:
+
+- Clone the repo.
+- cd repo_name and run npm install or yarn install
+- Run yarn dev (by defaul this app runs ins http://localhost:3000)

@@ -1,10 +1,13 @@
 import { Formik, Field, FieldProps, Form } from 'formik';
-import { Box, Button, FormGroup} from "@mui/material"
+import { Box, Button, FormGroup, Typography} from "@mui/material"
 import type { NextPage } from 'next'
+import Lottie from 'react-lottie';
 
+import completed from '../animation/completed.json';
 import { Input } from '../Components/Input'
 import { useState } from 'react';
 import { validationSchema } from '../schemas/formSchema';
+
 
 export interface IFormInitialValues {
    name: string
@@ -14,6 +17,8 @@ export interface IFormInitialValues {
 }
 
 const Home: NextPage = () => {
+  const [isSubmited, setIsSubmited] = useState(false)
+
   const initialValues: IFormInitialValues = {
     name: '',
     phone: '',
@@ -54,7 +59,28 @@ const Home: NextPage = () => {
 
   const getFormValues = (values: any) => {
     setFormValues(values)
-    console.log(values)
+    setIsSubmited(true)
+  }
+
+  const defaultOptions = {
+    loop: false,
+    autoplay: true, 
+    animationData: completed,
+    // rendererSettings: {
+    //   preserveAspectRatio: 'xMidYMid slice'
+    // }
+  };
+  
+
+  if(isSubmited) {
+    return (
+     <Box sx={{width: '100%', display: 'flex', flexDirection: 'column',alignItems: 'center', justifyContent: 'center'}}>
+      <Box sx={{ width: '600px', height: '600px', margin: '0 auto'}}>
+        <Lottie options={defaultOptions} />
+      </Box>
+        <Typography sx={{ fontWeight: 700 , fontSize: '3rem'}}>Submission completed!</Typography>
+     </Box>
+    )
   }
 
   return (
